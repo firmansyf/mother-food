@@ -1,0 +1,7 @@
+{
+  "data": [
+    { "path": "/", "label": "Your Profile", "icon": "" },
+    { "path": "/", "label": "Settings" },
+    { "path": "/", "label": "Sign out" }
+  ]
+}

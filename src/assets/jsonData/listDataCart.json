@@ -1,0 +1,36 @@
+{
+  "data_cart": [
+    {
+      "path": "/",
+      "label": "Ayam Bakar Crispy",
+      "img": "",
+      "quantity": "1",
+      "stok": "1000",
+      "harga": "36000"
+    },
+    {
+      "path": "/",
+      "label": "Basreng Mentah",
+      "img": "",
+      "quantity": "10",
+      "stok": "900",
+      "harga": "50000"
+    },
+    {
+      "path": "/",
+      "label": "Cireng",
+      "img": "",
+      "quantity": "30",
+      "stok": "2000",
+      "harga": "300000"
+    },
+    {
+      "path": "/",
+      "label": "Bakso",
+      "img": "",
+      "quantity": "5",
+      "stok": "4000",
+      "harga": "75000"
+    }
+  ]
+}
