@@ -13,6 +13,7 @@ import {
 import { NavLink as Link } from "react-router-dom";
 import listProfile from "../assets/jsonData/listDataProfile.json";
 import dataCart from "../assets/jsonData/listDataCart.json";
+import { Chatting } from "./chatting";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -21,6 +22,7 @@ function classNames(...classes) {
 export default function Navbar() {
   const { data } = listProfile;
   const { data_cart } = dataCart;
+  // const { chating } = listChat;
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -104,35 +106,167 @@ export default function Navbar() {
 
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <div className="flex items-center">
-                    <div className="chat-icon cursor-pointer relative items-center h-11 w-9 flex max-sm:hidden">
-                      <span
-                        className="absolute rounded-full flex text-white font-semibold top-0 right-0 items-center  justify-center h-5 w-7 text-center bg-green-600"
-                        style={{ fontSize: "11px" }}
-                      >
-                        {/* <span className="relative inline-flex rounded-full h-3 w-3"> */}
-                        99+
-                        {/* </span> */}
-                      </span>
-                      <ChatBubbleLeftEllipsisIcon
-                        className="hover:text-slate-400 ml-1 h-6 w-6"
-                        aria-hidden="true"
-                      />
-                    </div>
+                    <Menu
+                      as="div"
+                      className="chat-icon cursor-pointer relative items-center h-11 w-9 flex max-sm:hidden mt-2"
+                    >
+                      <div className="">
+                        <Menu.Button>
+                          <span
+                            className="absolute rounded-full flex text-white font-semibold top-0 right-0 items-center  justify-center h-5 w-7 text-center bg-green-600"
+                            style={{ fontSize: "11px" }}
+                          >
+                            99+
+                          </span>
+                          <ChatBubbleLeftEllipsisIcon
+                            className="hover:text-slate-400 ml-1 h-6 w-6"
+                            aria-hidden="true"
+                          />
+                        </Menu.Button>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-80 origin-top-right rounded-md bg-white px-2 pb-2 pt-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div className="flex w-full justify-between mb-2 border-b-2 pb-2">
+                              <span className="text-xs">Pesan</span>
+                              <span className="text-xs text-slate-400">
+                                Tandai Sudah Dibaca
+                              </span>
+                            </div>
+                            {Chatting.map(({ name, description, img }, i) => {
+                              return (
+                                <>
+                                  <Menu.Item>
+                                    {() => (
+                                      <>
+                                        <div
+                                          className={`flex items-center justify-between ${
+                                            i > 0 ? ` border-t-2` : ""
+                                          } mb-1 `}
+                                        >
+                                          <img
+                                            src={img}
+                                            className="w-12 h-12 mr-3 bg-slate-200 rounded shadow-sm"
+                                            alt={name}
+                                            // style={{ width: 35 }}
+                                          />
 
-                    <div className="bell-icon cursor-pointer relative flex">
-                      <BellIcon
-                        className="hover:text-slate-400 mx-1 h-6 w-6"
-                        aria-hidden="true"
-                      />
-                      <span className="absolute right-1 flex h-3 w-3">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                      </span>
-                    </div>
+                                          <div className="flex my-1 flex-col">
+                                            <span className="text-sm">
+                                              {name}
+                                            </span>
+                                            <span
+                                              className="text-slate-400 hover:text-black"
+                                              style={{ fontSize: "11px" }}
+                                            >
+                                              {description}
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </>
+                                    )}
+                                  </Menu.Item>
+                                </>
+                              );
+                            })}
+                            <div className="flex items-center mt-3 border-t-2 justify-center">
+                              <p className="text-xs mt-1 text-blue-400">
+                                Lihat Semua
+                              </p>
+                            </div>
+                          </Menu.Items>
+                        </Transition>
+                      </div>
+                    </Menu>
 
                     <Menu
                       as="div"
-                      className="cart-icon cursor-pointer justify-center flex relative items-center h-12 w-10"
+                      className="bell-icon cursor-pointer relative items-center h-11 w-9 flex max-sm:hidden mt-2"
+                    >
+                      <div className="">
+                        <Menu.Button>
+                          <BellIcon
+                            className="hover:text-slate-400 mx-1 h-6 w-6"
+                            aria-hidden="true"
+                          />
+                          <span className="absolute right-2 top-1 flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                          </span>
+                        </Menu.Button>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-72 origin-top-right rounded-md bg-white px-2 pb-2 pt-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div className="flex w-full justify-between mb-2 border-b-2 pb-2">
+                              <span className="text-xs">Notification</span>
+                              <span className="text-xs text-slate-400">
+                                Tandai Sudah Dibaca
+                              </span>
+                            </div>
+                            {Chatting.map(({ name, img, notif }, i) => {
+                              if (notif) {
+                                return (
+                                  <>
+                                    <Menu.Item>
+                                      {() => (
+                                        <>
+                                          <div
+                                            className={`flex items-center ${
+                                              i > 0 ? ` border-t-2` : ""
+                                            } mb-1 `}
+                                          >
+                                            <img
+                                              src={img}
+                                              className="w-12 h-12 mr-3 bg-slate-200 rounded shadow-sm"
+                                              alt={name}
+                                              // style={{ width: 35 }}
+                                            />
+
+                                            <div className="flex my-1 flex-col">
+                                              <span className="text-sm">
+                                                {name}
+                                              </span>
+                                              <span
+                                                className="text-slate-400 hover:text-black"
+                                                style={{ fontSize: "11px" }}
+                                              >
+                                                {notif}
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </>
+                                      )}
+                                    </Menu.Item>
+                                  </>
+                                );
+                              }
+                            })}
+                            <div className="flex items-center mt-3 border-t-2 justify-center">
+                              <p className="text-xs mt-1 text-blue-400">
+                                Lihat Semua
+                              </p>
+                            </div>
+                          </Menu.Items>
+                        </Transition>
+                      </div>
+                    </Menu>
+
+                    <Menu
+                      as="div"
+                      className="cart-icon cursor-pointer max-sm:mt-3 justify-center flex relative items-center h-12 w-10 mt-2"
                     >
                       <div className="">
                         <Menu.Button>
@@ -160,7 +294,7 @@ export default function Navbar() {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items className="absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white px-2 pb-2 pt-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-60 origin-top-right rounded-md bg-white px-2 pb-2 pt-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             {data_cart.map(
                               ({ path, label, quantity, harga }, i) => {
                                 return (

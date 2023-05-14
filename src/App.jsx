@@ -36,9 +36,9 @@ function App() {
             />
           </div>
         </div>
-        <div className="">
-          <NavMobile />
-        </div>
+        {/* <div className="bg-slate-600"> */}
+        <NavMobile />
+        {/* </div> */}
         <Routes>
           {data.map(({ path, element }, i) => {
             return <Route key={i} path={path} element={element} />;
