@@ -4,7 +4,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   BellIcon,
   ChatBubbleLeftEllipsisIcon,
-  MagnifyingGlassIcon,
+  // MagnifyingGlassIcon,
   ShoppingCartIcon,
   UserIcon,
   Cog6ToothIcon,
@@ -31,7 +31,11 @@ export default function Navbar() {
 
   return (
     <>
-      <Disclosure as="nav" className="shadow">
+      <Disclosure
+        as="nav"
+        className="shadow fixed w-full top-0 bg-slate-50"
+        style={{ zIndex: 100 }}
+      >
         {() => (
           <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -85,7 +89,7 @@ export default function Navbar() {
                       ))}
                     </div> */}
 
-                    <div className="w-full max-sm:hidden flex items-center relative rounded-md shadow-sm border-0 py-1.5 pl-2 pr-20 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-200 sm:text-sm sm:leading-6">
+                    {/* <div className="w-full max-sm:hidden flex items-center relative rounded-md shadow-sm border-0 py-1.5 pl-2 pr-20 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-200 sm:text-sm sm:leading-6">
                       <span className="text-gray-500 mr-2 sm:text-sm">
                         <MagnifyingGlassIcon
                           className="flex h-5 w-5"
@@ -100,7 +104,7 @@ export default function Navbar() {
                         className="block w-full outline-none"
                         placeholder="Search..."
                       />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 

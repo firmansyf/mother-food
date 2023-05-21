@@ -5,3 +5,37 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
+
+.card {
+  cursor: pointer;
+}
+.card-body {
+  /* background-color: #eee; */
+  height: 90px;
+}
+
+.card:hover .card-body {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: 0.4s;
+}
+.card:hover .card-body .title-makanan,
+.card:hover .card-body .rating-makanan,
+.card:hover .card-body .harga-makanan {
+  display: none;
+}
+
+.description-makanan {
+  display: none;
+}
+
+.card-body:hover .description-makanan {
+  display: flex;
+  margin-top: 10px;
+}
+
+.card-body:hover .description-makanan p {
+  color: white;
+  font-weight: 400;
+  font-size: 13px;
+}
