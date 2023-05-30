@@ -13,6 +13,7 @@ import { DataMakanan } from "../../components/dataMakanan";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 
 const Crousel = lazy(() => import("../../components/crousel"));
+const CardOrder = lazy(() => import("../../components/cardOrder"));
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -160,12 +161,19 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-32 max-sm:mt-20">
+          <div className="mt-32 max-sm:mt-20 w-ful">
             <h2 className="font-semibold text-3xl text-center max-sm:text-sm">
               Makanan Terlaris 2023
             </h2>
 
-            <div className="flex flex-wrap justify-center mt-10 w-full">
+            <div className="w-full flex items-center justify-center mt-3">
+              <span className="text-center">
+                Cari selera kamu dan makanan kesukaan kamu, rasakan di lidah{" "}
+                <br /> dan nikmati ke lezatannya
+              </span>
+            </div>
+
+            <div className="flex flex-wrap justify-center mt-7 w-full">
               {DataMakanan.slice(0, 8)?.map(
                 ({ label, description, img, harga }, index) => {
                   return (
@@ -216,10 +224,11 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-32 max-sm:mt-16">
+          <div className="mt-32 max-sm:mt-16 w-full ">
             <h2 className="font-semibold text-3xl text-center max-sm:text-sm">
               Kenapa order dari Mother <i className="text-green-500">Foods</i> ?
             </h2>
+            <CardOrder />
           </div>
         </div>
       </div>

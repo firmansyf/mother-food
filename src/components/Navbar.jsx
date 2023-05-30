@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 
 import {
@@ -14,13 +14,16 @@ import { NavLink as Link } from "react-router-dom";
 import listProfile from "../assets/jsonData/listDataProfile.json";
 import dataCart from "../assets/jsonData/listDataCart.json";
 import { Chatting } from "./chatting";
+import { UserContext } from "../App";
+UserContext;
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
-  const { data } = listProfile;
+  const { user, setUser } = useContext(UserContext);
+  const { data } = listProfile || [];
   const { data_cart } = dataCart;
   // const { chating } = listChat;
 
@@ -366,11 +369,11 @@ export default function Navbar() {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        {data.map(({ path, label }, i) => {
-                          return (
+                        <Menu.Item>
+                          {({ active }) => (
                             <>
-                              <Menu.Item>
-                                {({ active }) => (
+                              {data.map(({ path, label }, i) => {
+                                return (
                                   <a
                                     key={i}
                                     href={path}
@@ -392,21 +395,29 @@ export default function Navbar() {
                                           aria-hidden="true"
                                         />
                                       )}
-                                      {i === 2 && (
-                                        <ArrowLeftOnRectangleIcon
-                                          className="h-5 w-5"
-                                          aria-hidden="true"
-                                        />
-                                      )}
                                       &nbsp;
                                       {label}
                                     </span>
                                   </a>
-                                )}
-                              </Menu.Item>
+                                );
+                              })}
+
+                              <span
+                                className=""
+                                onClick={() => {
+                                  if (!user.loggedIn) return;
+                                  setUser({ loggedIn: false });
+                                }}
+                              >
+                                <ArrowLeftOnRectangleIcon
+                                  className="h-5 w-5"
+                                  aria-hidden="true"
+                                />
+                                Sign Out
+                              </span>
                             </>
-                          );
-                        })}
+                          )}
+                        </Menu.Item>
                       </Menu.Items>
                     </Transition>
                   </Menu>
