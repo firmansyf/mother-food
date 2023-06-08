@@ -15,7 +15,6 @@ import listProfile from "../assets/jsonData/listDataProfile.json";
 import dataCart from "../assets/jsonData/listDataCart.json";
 import { Chatting } from "./chatting";
 import { UserContext } from "../App";
-UserContext;
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -120,8 +119,8 @@ export default function Navbar() {
                       <div className="">
                         <Menu.Button>
                           <span
-                            className="absolute rounded-full flex text-white font-semibold top-0 right-0 items-center  justify-center h-5 w-7 text-center bg-green-600"
-                            style={{ fontSize: "11px" }}
+                            className="absolute rounded-full flex text-white font-semibold top-0 right-0 items-center  justify-center h-5 w-6 text-center bg-green-600"
+                            style={{ fontSize: "9px" }}
                           >
                             99+
                           </span>
@@ -153,6 +152,7 @@ export default function Navbar() {
                                     {() => (
                                       <>
                                         <div
+                                          key={i}
                                           className={`flex items-center justify-between ${
                                             i > 0 ? ` border-t-2` : ""
                                           } mb-1 `}
@@ -231,6 +231,7 @@ export default function Navbar() {
                                       {() => (
                                         <>
                                           <div
+                                            key={i}
                                             className={`flex items-center ${
                                               i > 0 ? ` border-t-2` : ""
                                             } mb-1 `}
@@ -279,8 +280,8 @@ export default function Navbar() {
                         <Menu.Button>
                           {data_cart.length > 0 && (
                             <span
-                              className="absolute rounded-full flex text-white font-semibold top-0 right-0 items-center justify-center h-5 w-7 text-center bg-red-500"
-                              style={{ fontSize: "11px" }}
+                              className="absolute rounded-full flex text-white font-semibold top-0 right-0 items-center justify-center h-5 w-5 text-center bg-red-500"
+                              style={{ fontSize: "9px" }}
                             >
                               {/* <span className="relative inline-flex rounded-full h-3 w-3"> */}
                               {data_cart.length}
@@ -310,6 +311,7 @@ export default function Navbar() {
                                       {({ active }) => (
                                         <>
                                           <div
+                                            key={i}
                                             className={`flex flex-col ${
                                               i > 0 ? ` border-t-2` : ""
                                             } mb-1 `}
@@ -372,7 +374,7 @@ export default function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <>
-                              {data.map(({ path, label }, i) => {
+                              {data?.map(({ path, label }, i) => {
                                 return (
                                   <a
                                     key={i}
@@ -403,14 +405,14 @@ export default function Navbar() {
                               })}
 
                               <span
-                                className=""
+                                className="px-4 py-2 text-sm flex text-gray-700"
                                 onClick={() => {
                                   if (!user.loggedIn) return;
                                   setUser({ loggedIn: false });
                                 }}
                               >
                                 <ArrowLeftOnRectangleIcon
-                                  className="h-5 w-5"
+                                  className="h-5 w-5 mr-1"
                                   aria-hidden="true"
                                 />
                                 Sign Out

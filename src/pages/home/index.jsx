@@ -89,12 +89,12 @@ function Index() {
             Pilih dari masakan
           </h2>
 
-          <div className="flex w-3/4 justify-between mt-7 max-sm:w-full max-sm:justify-center max-sm:flex-wrap">
+          <div className="flex w-full justify-between mt-7 max-sm:w-full max-sm:justify-center max-sm:flex-wrap z-10">
             {Array.isArray(category) &&
-              category.map(({ alt, img, label }) => {
+              category.map(({ alt, img, label }, i) => {
                 return (
                   <>
-                    <Link to="#">
+                    <Link to="#" key={i}>
                       <div
                         className="flex flex-col justify-center p-2  max-sm:px-5 shadow-sm cursor-pointer hover:shadow-xl hover:transition-all duration-100 rounded-lg"
                         style={{ overflowX: "hidden" }}

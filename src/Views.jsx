@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Index from "./pages/home";
 import NavMobile from "./components/NavMobile";
 import Footer from "./components/Footer";
-// import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "./ProtectedRoute";
 
 export default function Views() {
   const data = [
@@ -20,7 +20,7 @@ export default function Views() {
       <NavMobile />
 
       <Routes>
-        {/* <Route element={<ProtectedRoute />} /> */}
+        <Route element={<ProtectedRoute />} />
         {data.map(({ path, element }, i) => {
           return <Route key={i} path={path} element={element} />;
         })}

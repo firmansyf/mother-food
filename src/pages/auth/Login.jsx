@@ -1,14 +1,12 @@
 import { UserIcon, KeyIcon } from "@heroicons/react/24/outline";
 import logo from "../../assets/icon/brand-logo.png";
 import { UserContext } from "../../App";
-import { useState, useContext } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useState, useContext, useCallback } from "react";
+import { Validation } from "./validation";
 
 function Login() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  console.log("location :", location);
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
+  const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -20,18 +18,20 @@ function Login() {
     setForm(res);
   };
 
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-    if (form.username === "yusuf" && form.password === "firmansyah") {
-      // if (user.loggedIn) {
-      setUser({ loggedIn: true });
-      // }
-    }
-
-    if (user) {
-      navigate(location.pathname);
-    }
-  };
+  const handleOnSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (
+        // Object.keys(errors)?.length === 0 &&
+        form.username?.toLowerCase() === "yusuf" &&
+        form.password?.toLowerCase() === "firmansyah"
+      ) {
+        setUser({ loggedIn: true });
+      }
+      setErrors(Validation(form));
+    },
+    [form, errors]
+  );
 
   return (
     <>
@@ -56,8 +56,8 @@ function Login() {
               </div>
             </div>
 
-            <div className="mt-5">
-              <div className="username flex border-2 p-2 mb-3 rounded-md items-center justify-center">
+            <div className="mt-5 w-full">
+              <div className="username flex border-2 p-2 w-full rounded-md">
                 <UserIcon
                   className="h-5 w-5 text-slate-400"
                   aria-hidden="true"
@@ -72,8 +72,11 @@ function Login() {
                   onChange={handleChange}
                 />
               </div>
+              {errors.username && (
+                <span className="text-xs text-red-500">{errors.username}</span>
+              )}
 
-              <div className="password flex border-2 p-2 rounded-md">
+              <div className="password flex border-2 p-2 mt-3 w-full rounded-md">
                 <KeyIcon
                   className="h-5 w-5 text-slate-400"
                   aria-hidden="true"
@@ -87,6 +90,9 @@ function Login() {
                   onChange={handleChange}
                 />
               </div>
+              {errors.password && (
+                <span className="text-xs text-red-500">{errors.password}</span>
+              )}
             </div>
             <div className="flex p-2 mt-7 border-t-2 w-full justify-center">
               <button
