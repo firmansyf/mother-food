@@ -4,11 +4,12 @@ import Index from "./pages/home";
 import NavMobile from "./components/NavMobile";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./ProtectedRoute";
+import Product from "./pages/product/Product";
 
 export default function Views() {
   const data = [
     { path: "/", element: <Index /> },
-    { path: "/product", element: <h1 className="">Testing</h1> },
+    { path: "/product", element: <Product /> },
     { path: "/cousine", element: "Ok" },
     { path: "/about", element: "Hhh" },
   ];
@@ -20,10 +21,11 @@ export default function Views() {
       <NavMobile />
 
       <Routes>
-        <Route element={<ProtectedRoute />} />
-        {data.map(({ path, element }, i) => {
-          return <Route key={i} path={path} element={element} />;
-        })}
+        <Route element={<ProtectedRoute />}>
+          {data.map(({ path, element }, i) => {
+            return <Route key={i} path={path} element={element} />;
+          })}
+        </Route>
       </Routes>
 
       <Footer />

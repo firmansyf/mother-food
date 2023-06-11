@@ -39,7 +39,7 @@ function Footer() {
 
   return (
     <>
-      <div className="flex flex-col mt-20 items-center w-full max-sm:mt-7">
+      <div className="flex flex-col mt-20 items-center w-full max-sm:mt-7 bottom-0">
         <div className="flex justify-between items-center w-full p-5 bg-slate-50 border-t-2 border-b-2 max-sm:flex-col max-sm:p-2 max-sm:items-start">
           <div className="flex items-center ml-20 max-sm:ml-0">
             <h4 className="mx-3 font-semibold text-lg max-sm:text-sm max-sm:m-0">

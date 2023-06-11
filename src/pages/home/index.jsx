@@ -96,7 +96,7 @@ function Index() {
                   <>
                     <Link to="#" key={i}>
                       <div
-                        className="flex flex-col justify-center p-2  max-sm:px-5 shadow-sm cursor-pointer hover:shadow-xl hover:transition-all duration-100 rounded-lg"
+                        className="flex flex-col justify-center p-2 max-sm:px-5 shadow-sm cursor-pointer hover:shadow-xl hover:transition-all duration-100 rounded-lg"
                         style={{ overflowX: "hidden" }}
                       >
                         <img
@@ -211,7 +211,7 @@ function Index() {
               )}
               <div className="w-full">
                 <Link
-                  to="#"
+                  to="/product"
                   className="ml-7 max-sm:justify-center max-sm:text-xs flex items-center text-sm text-blue-400 cursor-pointer hover:text-blue-700"
                 >
                   Lihat lebih banyak
